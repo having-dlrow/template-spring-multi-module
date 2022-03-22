@@ -1,0 +1,60 @@
+
+### 2. form /login ( ROLE_USER )
+#   2-1. insert into tbl_users (idx, username, password) values (1, 'user', '{bcrypt}$2a$10$Wyc.IrbO.bqraF58565Yde6J6heWdARvbDUKfaQYr9v/IoHcQ1RlK');
+#   2-2  WebSecurity 에 .usernameParameter .passwordParameter 지정
+#   2-3  WebSecurity 에  csrf disable 처리
+
+POST http://localhost:8082/login
+Content-Type: application/x-www-form-urlencoded
+
+username=user&passowrd=1234
+
+### 3. form /login ( ROLE_ADMIN )
+#   3-1. insert into tbl_users (idx, username, password) values (1, 'user', '{bcrypt}$2a$10$Wyc.IrbO.bqraF58565Yde6J6heWdARvbDUKfaQYr9v/IoHcQ1RlK');
+#   3-2. insert into tbl_users (idx, username, password) values (2, 'admin', '{bcrypt}$2a$10$Wyc.IrbO.bqraF58565Yde6J6heWdARvbDUKfaQYr9v/IoHcQ1RlK');
+#
+
+POST http://localhost:8082/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&passowrd=1234
+
+###
+
+### 3. [Implicit] Set Client Key+Password & Get Client_Credentials
+
+# curl -F "grant_type=client_credentials" -F "scope=read" "http://foo:bar@localhost:8082/oauth/token"
+POST http://foo:bar@localhost:8082/oauth/token
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="grant_type"
+
+client_credentials
+--WebAppBoundary
+Content-Disposition: form-data; name="scope"
+
+read
+--WebAppBoundary--
+
+###
+
+### 4. [Authorization_Code] Set Client Key & Get Authorization_Code
+#   4-1. AuthorizationServerConfig.java -> Set client_id & client_secret
+#   4-2.
+
+GET http://localhost:8082/oauth/authorize?client_id=client&redirect_uri=http://localhost:8082/api/callback&response_type=code
+
+###
+
+###
+POST http://localhost:8082/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&client_id=clinet
+&clinet_secret=secret
+&redirect_uri=http://localhost:8082/api/callback
+&code=1ck6mc
+
+###
