@@ -8,3 +8,7 @@ h2
   * `Driver Class` : org.h2.Driver
   * `JDBC URL` : jdbc:h2:~/api
   * `User Name` : sa
+
+참고
+* https://ziponia.github.io/2019/05/15/spring-security-with-boot.html
+* ( https://github.com/ziponia/spring-security-example )
