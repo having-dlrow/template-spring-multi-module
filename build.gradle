@@ -74,12 +74,16 @@ project(':core') {
 
 project(':api') {
     dependencies {
-        implementation 'com.h2database:h2:1.4.190'
-
-        implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+        implementation project(':core')
 
         implementation 'org.springframework.cloud:spring-cloud-starter-security:2.1.2.RELEASE'
         implementation 'org.springframework.cloud:spring-cloud-starter-oauth2:2.1.2.RELEASE'
+
+        implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.4.1'
+
+//       implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
     }
 }
 
@@ -87,12 +91,13 @@ project(':oauth2') {
     dependencies {
         implementation project(':core')
 
-        implementation 'org.springframework.security:spring-security-jwt:1.0.9.RELEASE'
+        implementation 'org.springframework.cloud:spring-cloud-starter-security:2.1.2.RELEASE'
+        implementation 'org.springframework.cloud:spring-cloud-starter-oauth2:2.1.2.RELEASE'
 
         implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
         implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.4.1'
 
-        implementation 'org.springframework.cloud:spring-cloud-starter-security:2.1.2.RELEASE'
-        implementation 'org.springframework.cloud:spring-cloud-starter-oauth2:2.1.2.RELEASE'
+        implementation 'org.springframework.security:spring-security-jwt:1.0.9.RELEASE'
+
     }
 }

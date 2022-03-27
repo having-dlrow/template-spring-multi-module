@@ -14,13 +14,19 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
 
-security:
-  oauth2:
-    client:
-      client-id: foo
-      client-secret: bar
-    resource:
-      token-info-uri: http://localhost:8082/oauth/check_token
+  security:
+    user:
+      name: admin
+      password: 123
+      roles: ADMIN
+
+#security:
+#  oauth2:
+#    client:
+#      client-id: foo
+#      client-secret: bar
+#    resource:
+#      token-info-uri: http://localhost:8082/oauth/check_token
 
 logging.level:
   org.springframework:
